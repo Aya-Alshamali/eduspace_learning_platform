@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  FILE: lesson.html
+  ============================================================
+  1. PURPOSE: Lesson player (lesson.html?course=<id>&lesson=<id>) with original text lessons.
+  2. MAIN FUNCTIONALITY: module navigation, Previous / Next, Mark as Complete (lesson_completed, course_completed), notes (lesson_notes_saved), course progress, measured active study timer; lesson_started on load.
+  3. IMPORTANT SECTIONS: browser-style window > sidebar (shared) > top bar
+     (shared) > <main> (this page) > Messages dialog, consent banner,
+     toast (shared) > scripts.
+  4. DEPENDENCIES: assets/css/style.css, animations.css, responsive.css;
+     scripts (all "defer", run in this order): config.js -> course-data.js
+     -> analytics.js -> progress.js -> main.js -> courses.js -> lessons.js
+     -> quizzes.js -> dashboard.js -> account.js. Font: Plus Jakarta Sans.
+  5. HOW TO CUSTOMIZE: page text is here; courses, lessons and quizzes are
+     in assets/js/course-data.js; settings in assets/js/config.js. Every
+     button is described in a comment and in BUTTON_GUIDE.md.
+  6. HOW ANALYTICS IS INTEGRATED: see "GA4 AND GTM INTEGRATION SECTION"
+     below and the noscript slot right after <body>. GTM is inserted by
+     assets/js/analytics.js only with a real ID and the student's consent.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson | EduSpace</title>
+  <meta name="description" content="EduSpace - demonstration online learning platform with courses, lessons, quizzes and progress tracking.">
+
+  <!-- ==========================================
+       GA4 AND GTM INTEGRATION SECTION
+       ==========================================
+       Google Tag Manager is NOT pasted here as a static snippet. It is
+       inserted by assets/js/analytics.js -> loadGoogleTagManager() so that
+       it loads only when:
+         1. SITE_CONFIG.analytics.gtmContainerId (config.js) is a real ID
+            instead of the placeholder GTM-XXXXXXX, and
+         2. the student clicked "Accept" (or allowed analytics in Settings).
+       GA4 (G-XXXXXXXXXX) is configured INSIDE GTM with a Google tag, so
+       there is no gtag.js here and GA4 cannot be counted twice.
+       Page views: one per page load (lesson), sent by the GA4 Google tag.
+       ========================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/course-data.js" defer></script>
+  <script src="assets/js/analytics.js" defer></script>
+  <script src="assets/js/progress.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/courses.js" defer></script>
+  <script src="assets/js/lessons.js" defer></script>
+  <script src="assets/js/quizzes.js" defer></script>
+  <script src="assets/js/dashboard.js" defer></script>
+  <script src="assets/js/account.js" defer></script>
+</head>
+<body data-page="lesson">
+  <!-- GTM NOSCRIPT SLOT (Google Tag Manager, for visitors without JavaScript).
+       After you have a real container ID, you MAY replace this comment with:
+       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+       Note: it bypasses the consent banner, so only add it if your consent
+       rules allow that. -->
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol><symbol id="i-message" viewBox="0 0 24 24"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol><symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 3.9-6 8-6s7.2 2 8 6"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.5 3-5.5 6.5-5.5s5.9 2 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c2 .7 3.2 2.5 3.5 5.2"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol><symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol><symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4v.6M12 17h.01"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol><symbol id="i-text" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></symbol><symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c-3.6 0-6-2.4-6-5.6 0-3.6 3-5.4 3.6-9.4 2.6 1.6 3.4 3.8 3.2 5.6 1-.6 1.7-1.7 1.9-2.9 1.9 1.6 3.3 3.8 3.3 6.7C18 18.6 15.6 21 12 21z"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol><symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.7 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.8 7.5-9.5V6z"/></symbol></svg>
+  <!-- APP WINDOW: the floating, browser-style container of the reference design. -->
+  <div class="app">
+    <div class="app__chrome" aria-hidden="true"><span></span><span></span><span></span><p>eduspace.app</p></div>
+    <div class="app__frame">
+  <!-- SIDEBAR: compact black navigation. On screens under 860 px it becomes an animated drawer
+       (setSidebarOpen() in main.js). Tooltips are CSS-only (data-tooltip) and also appear on keyboard focus. -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <a class="sidebar__logo" href="index.html" aria-label="EduSpace home" data-tooltip="EduSpace home"><span class="logo-mark" aria-hidden="true">e</span><span class="nav-item__label">EduSpace</span></a>
+    <!-- BUTTON: close drawer (small screens only). Analytics: none. -->
+    <button type="button" class="sidebar__close icon-btn" id="sidebar-close" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+    <ul class="sidebar__list">
+      <!-- LINK: Home -> index.html. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="index.html" data-nav="home" data-tooltip="Home: popular courses and your learning summary" aria-label="Home"><svg class="icon" aria-hidden="true"><use href="#i-home"></use></svg><span class="nav-item__label">Home</span></a></li>
+      <!-- LINK: My Courses -> catalog.html?mine=1. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="catalog.html?mine=1" data-nav="my-courses" data-tooltip="My Courses: only the courses you enrolled in" aria-label="My Courses"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg><span class="nav-item__label">My Courses</span></a></li>
+      <!-- LINK: Course Catalog -> catalog.html. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="catalog.html" data-nav="catalog" data-tooltip="Course Catalog: search and filter all courses" aria-label="Course Catalog"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg><span class="nav-item__label">Course Catalog</span></a></li>
+      <!-- LINK: Learning Calendar -> dashboard.html#calendar. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="dashboard.html#calendar" data-nav="calendar" data-tooltip="Learning Calendar: study days and planned sessions" aria-label="Learning Calendar"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg><span class="nav-item__label">Learning Calendar</span></a></li>
+      <!-- BUTTON: Messages - opens the demonstration inbox (openMessages() in main.js). Analytics: none. -->
+      <li><button type="button" class="nav-item" id="messages-btn" data-tooltip="Messages: demonstration inbox" aria-label="Messages"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg><span class="nav-item__label">Messages</span><span class="nav-item__badge" aria-hidden="true">3</span></button></li>
+      <!-- LINK: Learning Analytics -> dashboard.html. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="dashboard.html" data-nav="dashboard" data-tooltip="Learning Analytics: your progress, study time and quiz results" aria-label="Learning Analytics"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg><span class="nav-item__label">Learning Analytics</span></a></li>
+      <!-- LINK: Settings -> settings.html. Analytics: page_view of that page (GA4 Google tag in GTM). -->
+      <li><a class="nav-item" href="settings.html" data-nav="settings" data-tooltip="Settings: motion, analytics consent and your data" aria-label="Settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"></use></svg><span class="nav-item__label">Settings</span></a></li>
+    </ul>
+    <!-- LINK: Student Profile -> profile.html. Analytics: page_view. -->
+    <a class="sidebar__profile nav-item" href="profile.html" data-nav="profile" data-tooltip="Student Profile: name, goal, completion record and notes" aria-label="Student Profile">
+      <span class="avatar avatar--sm" data-student-avatar>S</span><span class="nav-item__label">Student Profile</span>
+    </a>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+  <div class="app__body">
+    <!-- TOP BAR: menu button (small screens), page title, sample-data badge, student chip. -->
+    <header class="topbar">
+      <!-- BUTTON: open the navigation drawer (setSidebarOpen in main.js). Analytics: none. -->
+      <button type="button" class="icon-btn topbar__menu" id="menu-toggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
+      <div class="topbar__title"><nav aria-label="Breadcrumb" class="breadcrumb"><a href="catalog.html">Catalog</a><span aria-hidden="true">/</span><a id="lesson-course-link" href="catalog.html">Course</a></nav></div>
+      <span class="badge badge--sample" data-sample-badge hidden data-tooltip="Loaded from Settings. These numbers were not measured."><svg class="icon" aria-hidden="true"><use href="#i-sparkle"></use></svg>Sample data</span>
+      <!-- LINK: student chip -> profile.html. Analytics: page_view. -->
+      <a class="student-chip" href="profile.html" aria-label="Open your profile">
+        <span class="student-chip__text"><small>Signed in locally</small><strong data-student-name>Student</strong></span>
+        <span class="avatar" data-student-avatar>S</span>
+      </a>
+    </header>
+    <main id="main">
+      <div id="lesson-page">
+        <!-- ENROLMENT GATE: shown when the student is not enrolled.
+             BUTTON: Enroll and start -> handleEnroll(course, "lesson_gate") -> course_enrolled, then lesson_started. -->
+        <section class="panel gate" data-lesson-gate hidden>
+          <span class="gate__icon"><svg class="icon" aria-hidden="true"><use href="#i-book"></use></svg></span>
+          <h1>Enroll to start this lesson</h1>
+          <p><strong data-gate-title></strong> is free on this demonstration platform. Your progress will be saved in this browser.</p>
+          <button type="button" class="btn btn--dark btn--lg" id="gate-enroll-btn"><svg class="icon" aria-hidden="true"><use href="#i-plus"></use></svg>Enroll and start</button>
+        </section>
+
+        <div class="lesson-layout" data-lesson-content>
+          <!-- MODULE NAVIGATION: links to every lesson (+1 page_view and +1 lesson_started each) and to the quiz. -->
+          <nav class="panel lesson-nav" aria-label="Course lessons"><ol id="lesson-nav"></ol></nav>
+
+          <article class="panel lesson">
+            <p class="eyebrow" id="lesson-kicker"></p>
+            <h1 id="lesson-title"></h1>
+            <p class="lesson__meta" id="lesson-meta"></p>
+            <p class="lead" id="lesson-summary"></p>
+            <div class="lesson__body" id="lesson-body"></div>
+            <div class="lesson__actions">
+              <!-- LINK: Previous lesson (disabled on lesson 1). Analytics: page_view + lesson_started on the next page. -->
+              <a class="btn btn--light" id="prev-lesson"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"></use></svg>Previous</a>
+              <!-- BUTTON: Mark as Complete -> completeLesson() in lessons.js.
+                   Analytics: lesson_completed (first completion only); course_completed if it was the last requirement. -->
+              <button type="button" class="btn btn--dark" id="complete-btn"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>Mark as Complete</button>
+              <!-- LINK: Next lesson / Take the quiz. Analytics: page_view (+ lesson_started on a lesson page). -->
+              <a class="btn btn--light" id="next-lesson">Next lesson <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+            </div>
+          </article>
+
+          <aside class="lesson-side">
+            <section class="panel">
+              <h2>Course progress</h2>
+              <p class="small" id="lesson-progress-text"></p>
+              <div class="progress progress--lg" role="progressbar" aria-label="Course progress" aria-valuemin="0" aria-valuemax="100"><span id="lesson-progress-bar"></span></div>
+              <p class="hint" id="course-complete-hint" hidden></p>
+              <p class="timer"><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg><span>Active study time on this page: <strong id="study-timer">0:00</strong></span></p>
+              <p class="muted small">Counts only while this tab is visible and you were active in the last 60 seconds.</p>
+            </section>
+            <!-- NOTES: submit -> saveNotes() in lessons.js -> lesson_notes_saved (only when the text changed; the text itself is never sent). -->
+            <form class="panel notes" id="notes-form">
+              <h2><label for="lesson-notes">My notes</label></h2>
+              <textarea id="lesson-notes" rows="7" placeholder="Write what you want to remember..."></textarea>
+              <div class="notes__foot">
+                <span class="muted small" id="notes-status" role="status"></span>
+                <button type="submit" class="btn btn--dark btn--sm">Save notes</button>
+              </div>
+              <p class="muted small">Stored only in this browser.</p>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+    </div>
+  </div>
+
+  <!-- MESSAGES DIALOG (demonstration inbox, filled by openMessages() in main.js). Analytics: none. -->
+  <dialog class="dialog" id="messages-dialog" aria-labelledby="messages-title">
+    <div class="dialog__head">
+      <h2 id="messages-title">Messages</h2>
+      <!-- BUTTON: close the dialog. Analytics: none. -->
+      <button type="button" class="icon-btn" data-close-dialog aria-label="Close messages"><svg class="icon" aria-hidden="true"><use href="#i-x"></use></svg></button>
+    </div>
+    <p class="muted small">Demonstration messages. Nothing is sent or received on this platform.</p>
+    <ul class="messages" id="messages-list"></ul>
+    <form class="message-reply" onsubmit="return false">
+      <label class="visually-hidden" for="reply-input">Reply</label>
+      <input id="reply-input" type="text" placeholder="Replying is disabled in demo mode" disabled>
+      <button type="button" class="btn btn--dark btn--sm" disabled>Send</button>
+    </form>
+  </dialog>
+
+  <!-- CONSENT BANNER: shown only when a real GTM ID is set and no choice was made yet (analytics.js). -->
+  <div class="consent" id="consent-banner" role="region" aria-label="Analytics consent" hidden>
+    <p>We would like to measure how the platform is used with Google Analytics (anonymous course and lesson ids only, no names or answers). <a href="settings.html">Settings</a></p>
+    <div class="btn-row">
+      <!-- BUTTON: Decline -> handleConsentChoice("denied"). GTM never loads. -->
+      <button type="button" class="btn btn--light btn--sm" id="consent-decline-btn">Decline</button>
+      <!-- BUTTON: Accept -> handleConsentChoice("granted"). GTM loads; GA4 sends page_view. -->
+      <button type="button" class="btn btn--dark btn--sm" id="consent-accept-btn">Accept</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

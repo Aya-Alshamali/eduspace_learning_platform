@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Bar chart with a rising arrow and sigma sign">
+<!-- Original illustration for EduSpace (Bar chart with a rising arrow and sigma sign). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="58" y="92" width="24" height="38" rx="6" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<rect x="92" y="72" width="24" height="58" rx="6" fill="#E9A25C" stroke="#181818" stroke-width="3"/>
+<rect x="126" y="52" width="24" height="78" rx="6" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<path d="M52 82 92 60l26 10 44-38" stroke="#181818" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 30h14v14" stroke="#181818" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="182" cy="98" r="24" fill="#181818"/><text x="182" y="108" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" fill="#F7D774">&#963;</text>
+</svg>

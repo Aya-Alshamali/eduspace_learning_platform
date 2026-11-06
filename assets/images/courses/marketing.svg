@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Megaphone and growth chart">
+<!-- Original illustration for EduSpace (Megaphone and growth chart). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<path d="M62 74 128 44v68L62 92z" fill="#E9A25C" stroke="#181818" stroke-width="3" stroke-linejoin="round"/>
+<rect x="46" y="70" width="20" height="26" rx="6" fill="#181818"/><path d="M70 94l8 26h14l-6-24" fill="#FFFFFF" stroke="#181818" stroke-width="3" stroke-linejoin="round"/>
+<rect x="128" y="40" width="12" height="76" rx="6" fill="#181818"/>
+<path d="M150 64c8 4 8 24 0 28M158 54c16 8 16 40 0 48" stroke="#181818" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="168" y="96" width="44" height="36" rx="8" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><path d="M176 124l10-10 8 6 12-14" stroke="#3FAF80" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

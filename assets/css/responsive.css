@@ -1,0 +1,119 @@
+/**
+ * ============================================================
+ * FILE: assets/css/responsive.css
+ * ============================================================
+ *
+ * 1. PURPOSE
+ *    Adapts the desktop dashboard to laptops, tablets and phones.
+ *
+ * 2. IMPORTANT SECTIONS (breakpoints)
+ *    <= 1280 px  narrower right panel; lesson side panel moves below
+ *    <= 1100 px  home panel below the courses; single-column course page
+ *    <=  860 px  sidebar becomes an animated drawer; window fills the screen
+ *    <=  600 px  phone layout (scrolling chips, stacked forms)
+ *
+ * 3. DEPENDENCIES
+ *    style.css (loaded before). main.js toggles body.sidebar-open.
+ *
+ * 4. HOW TO CUSTOMIZE IT
+ *    Change the breakpoint numbers; keep 860 in sync with nothing else
+ *    (the drawer is pure CSS + one class).
+ *
+ * 5. HOW ANALYTICS IS INTEGRATED
+ *    None. Layout changes never send events.
+ * ============================================================
+ */
+
+/* ==========================================
+   GA4 AND GTM EVENT TRACKING SECTION (reserved)
+   ==========================================
+   No tracking in CSS. Note for analysis: GA4 reports device category;
+   the same events fire on every screen size. */
+
+@media (max-width: 1280px) {
+  .home { grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; }
+  .lesson-layout { grid-template-columns: 230px minmax(0, 1fr); }
+  .lesson-side { grid-column: 2; position: static; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; }
+}
+
+@media (max-width: 1100px) {
+  .home { grid-template-columns: minmax(0, 1fr); }
+  .side-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .course-hero { grid-template-columns: 240px minmax(0, 1fr); }
+  .course-layout { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dash-grid { grid-template-columns: minmax(0, 1fr); }
+  .calendar-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 860px) {
+  body { padding: 0; }
+  .app { border-radius: 0; box-shadow: none; }
+  .app__chrome { display: none; }
+  .app__frame { grid-template-columns: minmax(0, 1fr); min-height: 100vh; }
+  .app__body { padding: 14px 16px 40px; }
+
+  /* Sidebar -> drawer */
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 60;
+    margin: 0; width: 272px; height: auto; min-height: 0;
+    border-radius: 0 var(--radius-card) var(--radius-card) 0;
+    align-items: stretch; padding: 22px 16px; overflow-y: auto;
+    transform: translateX(-105%); visibility: hidden;
+    transition: transform 0.4s var(--ease), visibility 0s linear 0.4s;
+  }
+  body.sidebar-open { overflow: hidden; }
+  body.sidebar-open .sidebar { transform: none; visibility: visible; transition: transform 0.4s var(--ease), visibility 0s; }
+  .sidebar__logo { justify-content: flex-start; display: flex; align-items: center; gap: 12px; color: var(--white); font-weight: 800; font-size: 1.1rem; border-radius: 14px; }
+  .sidebar .sidebar__close { display: grid; position: absolute; top: 22px; right: 16px; background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.25); }
+  .nav-item { width: 100%; height: 50px; display: flex; justify-content: flex-start; gap: 14px; padding: 0 14px; }
+  .nav-item__label { display: inline; font-weight: 600; }
+  .nav-item__badge { position: static; margin-left: auto; }
+  .sidebar [data-tooltip]::after { display: none; }
+  .sidebar-overlay {
+    display: block; position: fixed; inset: 0; z-index: 55;
+    background: rgba(24, 24, 24, 0.4); opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  body.sidebar-open .sidebar-overlay { opacity: 1; pointer-events: auto; }
+
+  .topbar .topbar__menu { display: inline-grid; }
+  .student-chip { padding: 4px; }
+  .student-chip__text { display: none; }
+
+  .lesson-layout { grid-template-columns: minmax(0, 1fr); }
+  .lesson { order: 1; padding: 24px 20px; }
+  .lesson-side { order: 2; grid-column: auto; }
+  .lesson-nav { order: 3; position: static; }
+  .profile-grid, .settings-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 14.5px; }
+  .home__intro { flex-direction: column; align-items: flex-start; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 4px 16px 8px; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip { scroll-snap-align: start; }
+  .side-panel { grid-template-columns: minmax(0, 1fr); }
+  .course-grid, .course-grid--wide { grid-template-columns: minmax(0, 1fr); }
+  .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .search { padding-left: 14px; }
+  .course-hero { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .course-hero__media { max-width: 320px; }
+  .outline__lesson { grid-template-columns: 30px minmax(0, 1fr); }
+  .outline__time { grid-column: 2; }
+  .lesson-side { grid-template-columns: minmax(0, 1fr); }
+  .lesson__actions .btn { flex: 1 1 auto; }
+  .stats { gap: 10px; }
+  .stat { padding: 14px; }
+  .stat__value { font-size: 1.3rem; }
+  .fact-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quiz-runner { padding: 20px 16px; }
+  .results-top { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .results-top .btn-row { justify-content: center; }
+  .chart__bars { gap: 6px; }
+  .consent { flex-direction: column; align-items: stretch; bottom: 12px; }
+  .panel { padding: 18px; }
+  .table th:nth-child(2), .table td:nth-child(2) { display: none; }
+}

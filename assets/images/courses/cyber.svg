@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Shield with a padlock">
+<!-- Original illustration for EduSpace (Shield with a padlock). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<path d="M120 20 70 38v34c0 32 21 56 50 66 29-10 50-34 50-66V38z" fill="#FFFFFF" stroke="#181818" stroke-width="3" stroke-linejoin="round"/>
+<path d="M120 34 84 47v25c0 23 15 41 36 49z" fill="#E08A92" opacity=".7"/>
+<rect x="98" y="72" width="44" height="36" rx="9" fill="#181818"/><path d="M106 72v-8a14 14 0 0 1 28 0v8" stroke="#181818" stroke-width="5" fill="none"/>
+<circle cx="120" cy="88" r="5" fill="#F7D774"/><path d="M120 92v7" stroke="#F7D774" stroke-width="4" stroke-linecap="round"/>
+<path d="M186 40l6 6M196 58h8M48 48h-8M54 30l-6-6" stroke="#181818" stroke-width="3" stroke-linecap="round"/>
+</svg>

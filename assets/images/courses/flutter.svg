@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Smartphone showing app cards">
+<!-- Original illustration for EduSpace (Smartphone showing app cards). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="84" y="18" width="72" height="124" rx="16" fill="#181818"/><rect x="90" y="30" width="60" height="100" rx="10" fill="#FFFFFF"/>
+<rect x="97" y="38" width="46" height="24" rx="7" fill="#8E7CF0"/><rect x="97" y="68" width="21" height="22" rx="6" fill="#3FAF80"/><rect x="122" y="68" width="21" height="22" rx="6" fill="#E9A25C"/>
+<rect x="97" y="96" width="46" height="8" rx="4" fill="#181818" opacity=".15"/><rect x="97" y="110" width="30" height="8" rx="4" fill="#181818" opacity=".15"/>
+<path d="M176 58l14-14M176 58l14 14M186 92l-14 14 14 14" stroke="#181818" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58 62c0-8 6-14 14-14M50 62c0-12 10-22 22-22" stroke="#181818" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

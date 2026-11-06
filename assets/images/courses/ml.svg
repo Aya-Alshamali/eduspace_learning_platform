@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Neural network of connected nodes">
+<!-- Original illustration for EduSpace (Neural network of connected nodes). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<g stroke="#181818" stroke-width="2.5" opacity=".55">
+<path d="M64 46 120 34M64 46l56 46M64 46l56 58M64 80l56-46M64 80l56 12M64 80l56 24M64 114 120 34M64 114l56-22M64 114l56-10"/>
+<path d="M120 34l56 30M120 92l56-28M120 104l56-28M120 34l56 62M120 92l56 4M120 104l56-8"/></g>
+<circle cx="64" cy="46" r="11" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><circle cx="64" cy="80" r="11" fill="#E08A92" stroke="#181818" stroke-width="3"/><circle cx="64" cy="114" r="11" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<circle cx="120" cy="34" r="11" fill="#8E7CF0" stroke="#181818" stroke-width="3"/><circle cx="120" cy="92" r="11" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><circle cx="120" cy="104" r="0"/>
+<circle cx="176" cy="64" r="13" fill="#181818"/><circle cx="176" cy="96" r="13" fill="#F7D774" stroke="#181818" stroke-width="3"/>
+</svg>

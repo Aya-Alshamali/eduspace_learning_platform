@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Monitor with bar and pie charts">
+<!-- Original illustration for EduSpace (Monitor with bar and pie charts). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="38" y="24" width="164" height="98" rx="14" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<path d="M108 122v14M88 138h64" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+<rect x="56" y="78" width="14" height="28" rx="4" fill="#8E7CF0"/><rect x="76" y="62" width="14" height="44" rx="4" fill="#181818"/><rect x="96" y="48" width="14" height="58" rx="4" fill="#8E7CF0"/>
+<circle cx="158" cy="72" r="28" fill="#E9A25C" stroke="#181818" stroke-width="3"/><path d="M158 72V44a28 28 0 0 1 26 18z" fill="#181818"/><path d="M158 72l26-10a28 28 0 0 1-6 30z" fill="#3FAF80"/>
+</svg>

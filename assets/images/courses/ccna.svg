@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Network router and connected devices">
+<!-- Original illustration for EduSpace (Network router and connected devices). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<path d="M64 52 120 92M176 52 120 92M120 92v28" stroke="#181818" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+<rect x="40" y="32" width="48" height="34" rx="9" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><rect x="48" y="40" width="32" height="16" rx="4" fill="#8E7CF0"/>
+<rect x="152" y="32" width="48" height="34" rx="9" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><rect x="160" y="40" width="32" height="16" rx="4" fill="#3FAF80"/>
+<path d="M96 96V74M144 96V74" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+<rect x="84" y="94" width="72" height="34" rx="12" fill="#181818"/>
+<circle cx="102" cy="111" r="4" fill="#3FAF80"/><circle cx="116" cy="111" r="4" fill="#F7D774"/><circle cx="130" cy="111" r="4" fill="#E08A92"/>
+</svg>

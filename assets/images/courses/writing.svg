@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Document and fountain pen">
+<!-- Original illustration for EduSpace (Document and fountain pen). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="70" y="26" width="92" height="112" rx="12" fill="#FFFFFF" stroke="#181818" stroke-width="3" transform="rotate(-6 116 82)"/>
+<g transform="rotate(-6 116 82)" stroke="#181818" stroke-width="4" stroke-linecap="round"><path d="M86 52h46"/><path d="M86 68h60" opacity=".35"/><path d="M86 82h54" opacity=".35"/><path d="M86 96h40" opacity=".35"/></g>
+<rect x="84" y="104" width="34" height="12" rx="6" fill="#E08A92" transform="rotate(-6 116 82)"/>
+<g transform="rotate(38 170 80)"><rect x="160" y="30" width="20" height="78" rx="8" fill="#181818"/><path d="M160 108h20l-10 22z" fill="#F7D774" stroke="#181818" stroke-width="3" stroke-linejoin="round"/><rect x="160" y="44" width="20" height="8" fill="#E08A92"/></g>
+</svg>

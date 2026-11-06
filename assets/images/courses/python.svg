@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Code editor window with a terminal prompt">
+<!-- Original illustration for EduSpace (Code editor window with a terminal prompt). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="46" y="30" width="148" height="104" rx="14" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<path d="M46 52h148" stroke="#181818" stroke-width="3"/><circle cx="60" cy="41" r="4" fill="#E08A92"/><circle cx="73" cy="41" r="4" fill="#F7D774"/><circle cx="86" cy="41" r="4" fill="#3FAF80"/>
+<path d="M62 70l12 10-12 10" stroke="#181818" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="84" y="76" width="44" height="8" rx="4" fill="#8E7CF0"/><rect x="134" y="76" width="30" height="8" rx="4" fill="#181818" opacity=".2"/>
+<rect x="84" y="94" width="26" height="8" rx="4" fill="#181818" opacity=".2"/><rect x="116" y="94" width="48" height="8" rx="4" fill="#3FAF80"/>
+<rect x="62" y="112" width="70" height="8" rx="4" fill="#181818" opacity=".2"/>
+</svg>

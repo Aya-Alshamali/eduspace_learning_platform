@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Stack of database cylinders">
+<!-- Original illustration for EduSpace (Stack of database cylinders). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<g stroke="#181818" stroke-width="3">
+<path d="M78 100v20c0 9 19 16 42 16s42-7 42-16v-20" fill="#FFFFFF"/><ellipse cx="120" cy="100" rx="42" ry="14" fill="#3FAF80"/>
+<path d="M78 70v20c0 9 19 16 42 16s42-7 42-16V70" fill="#FFFFFF"/><ellipse cx="120" cy="70" rx="42" ry="14" fill="#FFFFFF"/>
+<path d="M78 40v20c0 9 19 16 42 16s42-7 42-16V40" fill="#FFFFFF"/><ellipse cx="120" cy="40" rx="42" ry="14" fill="#8E7CF0"/></g>
+<circle cx="146" cy="88" r="4" fill="#181818"/><circle cx="146" cy="118" r="4" fill="#181818"/><circle cx="146" cy="58" r="4" fill="#181818"/>
+<rect x="176" y="62" width="40" height="40" rx="10" fill="#181818"/><path d="M186 76h20M186 88h12" stroke="#F7D774" stroke-width="4" stroke-linecap="round"/>
+</svg>

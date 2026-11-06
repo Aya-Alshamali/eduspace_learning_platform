@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" role="img" aria-label="Sofa, floor lamp and framed picture">
+<!-- Original illustration for EduSpace (Sofa, floor lamp and framed picture). Free to reuse within this project. -->
+<ellipse cx="120" cy="142" rx="78" ry="8" fill="#181818" opacity=".08"/>
+<circle cx="120" cy="78" r="62" fill="#FFFFFF" opacity=".5"/>
+
+<rect x="92" y="26" width="56" height="40" rx="6" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><path d="M100 58l14-16 10 10 8-6 10 12z" fill="#3FAF80"/><circle cx="134" cy="38" r="4" fill="#F7D774"/>
+<rect x="54" y="80" width="132" height="40" rx="16" fill="#E9A25C" stroke="#181818" stroke-width="3"/>
+<rect x="44" y="74" width="24" height="50" rx="10" fill="#FFFFFF" stroke="#181818" stroke-width="3"/><rect x="172" y="74" width="24" height="50" rx="10" fill="#FFFFFF" stroke="#181818" stroke-width="3"/>
+<path d="M60 124v10M180 124v10" stroke="#181818" stroke-width="4" stroke-linecap="round"/>
+<path d="M206 136V54" stroke="#181818" stroke-width="3"/><path d="M192 54h28l-6-20h-16z" fill="#F7D774" stroke="#181818" stroke-width="3" stroke-linejoin="round"/>
+</svg>

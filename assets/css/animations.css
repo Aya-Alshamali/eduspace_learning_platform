@@ -1,0 +1,103 @@
+/**
+ * ============================================================
+ * FILE: assets/css/animations.css
+ * ============================================================
+ *
+ * 1. PURPOSE
+ *    All motion of EduSpace, kept soft to suit the pastel design.
+ *
+ * 2. IMPORTANT SECTIONS
+ *    A. Keyframes
+ *    B. Dashboard entrance (window, sidebar, staggered cards and panels)
+ *    C. Filtering transitions
+ *    D. Progress bars and completion feedback
+ *    E. Quiz (question slides, results reveal)
+ *    F. Page transitions and dialogs
+ *    G. Reduced motion (operating system OR the Settings switch)
+ *
+ * 3. DEPENDENCIES
+ *    Classes set by JavaScript: html.is-ready, html.is-leaving,
+ *    html.reduce-motion (main.js), .is-filtering (courses.js),
+ *    .slide-next / .slide-prev (quizzes.js), .pop (lessons.js / courses.js),
+ *    .chart.is-drawn (dashboard.js). Stagger order comes from --i.
+ *
+ * 4. HOW TO CUSTOMIZE IT
+ *    Change durations below; the easing curve is --ease in style.css.
+ *    Only opacity and transform are animated (no layout shift).
+ *
+ * 5. HOW ANALYTICS IS INTEGRATED
+ *    Animations never trigger analytics. Events are sent by click and
+ *    save handlers only, so replaying or skipping an animation cannot
+ *    create or remove events.
+ * ============================================================
+ */
+
+/* ==========================================
+   GA4 AND GTM EVENT TRACKING SECTION (reserved)
+   ==========================================
+   Nothing here. Rule for future changes: never start tracking from an
+   animationend / transitionend event - users with reduced motion would
+   be counted differently. */
+
+/* A. Keyframes ---------------------------------------------------- */
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sidebar-in { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+@keyframes card-in { from { opacity: 0; transform: translateY(22px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes card-filter { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes fill { from { width: 0; } }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+@keyframes slide-from-right { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes slide-from-left { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(14px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes dialog-out { to { opacity: 0; transform: translateY(8px) scale(0.98); } }
+
+/* B. Dashboard entrance -------------------------------------------- */
+.app { animation: fade 0.6s ease both; }
+.app__body > main { animation: rise 0.7s var(--ease) 0.08s both; }
+@media (min-width: 861px) {
+  .sidebar { animation: sidebar-in 0.8s var(--ease) 0.05s both; }
+}
+.course-card { animation: card-in 0.7s var(--ease) both; animation-delay: calc(0.15s + var(--i, 0) * 70ms); }
+.side-panel > .panel { animation: rise 0.7s var(--ease) both; }
+.side-panel > .panel:nth-child(1) { animation-delay: 0.2s; }
+.side-panel > .panel:nth-child(2) { animation-delay: 0.3s; }
+.side-panel > .panel:nth-child(3) { animation-delay: 0.4s; }
+.side-panel > .panel:nth-child(4) { animation-delay: 0.5s; }
+.stat { animation: rise 0.6s var(--ease) both; animation-delay: calc(0.1s + var(--i, 0) * 50ms); }
+
+/* C. Filtering ------------------------------------------------------ */
+.is-filtering .course-card { animation: card-filter 0.45s var(--ease) both; animation-delay: calc(var(--i, 0) * 40ms); }
+.chip.is-active { animation: pop 0.4s var(--ease); }
+
+/* D. Progress + completion feedback --------------------------------- */
+.progress > span { animation: fill 1s var(--ease) 0.2s both; }
+.pop { animation: pop 0.45s var(--ease); }
+
+/* E. Quiz -------------------------------------------------------------- */
+.quiz-card.slide-next { animation: slide-from-right 0.4s var(--ease); }
+.quiz-card.slide-prev { animation: slide-from-left 0.4s var(--ease); }
+.quiz-results:not([hidden]) .results-top { animation: rise 0.6s var(--ease) both; }
+.quiz-results:not([hidden]) .review-item { animation: rise 0.55s var(--ease) both; animation-delay: calc(0.35s + var(--i, 0) * 80ms); }
+.option.is-selected .option__letter { animation: pop 0.35s var(--ease); }
+[data-quiz-screen]:not([hidden]) { animation: fade 0.35s ease; }
+
+/* F. Page transitions + dialogs ----------------------------------------- */
+.app__body { transition: opacity 0.16s ease, transform 0.16s ease; }
+html.is-leaving .app__body { opacity: 0; transform: translateY(6px); }
+.dialog[open] { animation: dialog-in 0.35s var(--ease); }
+.dialog[open]::backdrop { animation: fade 0.3s ease; }
+.dialog.is-closing { animation: dialog-out 0.2s ease forwards; }
+
+/* G. Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important;
+  }
+}
+html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after {
+  animation-duration: 0.001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important; transition-delay: 0s !important;
+}
+html.reduce-motion { scroll-behavior: auto; }
